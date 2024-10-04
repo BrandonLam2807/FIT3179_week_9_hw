@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <h1>Australia Natural Disasters over the years</h1>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
@@ -9,7 +11,6 @@
 </head>
 
 <body>
-<h1>Australia Natural Disasters</h1>
     <!-- Container for the first visualization -->
     <div id="vis1" class="vis-container"></div>
     <!-- Container for the second visualization -->
@@ -27,24 +28,64 @@
                 "scale": 700,
                 "center": [133.7751, -25.2744]
             },
+            // "params": [
+            //   {
+            //     "name": "Deaths",
+            //     "value": 0,
+            //     "bind": {
+            //       "input": "range",
+            //       "min": 0,
+            //       "max": 50000,
+            //       "step": 100,
+            //       "name": "Number of deaths per Disaster Events: "
+            //     }
+            //   },
+            // {
+            //   "name": "Region_selection",
+            //   "bind": {
+            //     "input": "select",
+            //     "options": [
+            //       null,
+            //       "Victoria",
+            //       "New South Wales", 
+            //       "Western Australia", 
+            //       "South Australia", 
+            //       "Queensland"
+            //     ],
+            //     "labels":[
+            //       "Show All",
+            //       "Victoria",
+            //       "New South Wales", 
+            //       "Western Australia", 
+            //       "South Australia", 
+            //       "Queensland"
+            //     ],
+            //     "name": "State Selection: "
+            //   }
+            // }
+            // ],
+            // "transform": [
+            //   {"filter": "datum.Evacuated > 0"},
+            //   {"filter": "datum.Deaths > 0"},
+            //   {"filter": "datum.Evacuated > Deaths"},
+            //   {
+            //     "filter": "Region_selection == null || datum.region == Region_selection"
+            //   }
+            // ],
+            "background": "#b3e5fc",
             "layer": [
                 {
-                    // Coastline Layer
                     "data": {
                         "url": "https://raw.githubusercontent.com/BrandonLam2807/FIT3179_week_9_hw/refs/heads/main/ne_50m_coastline.json",
                         "format": { "type": "topojson", "feature": "ne_50m_coastline" }
                     },
-                    "mark": { "type": "geoshape", "fill": "lightgrey", "stroke": "white" }
+                    "mark": { "type": "geoshape", "fill": "#d3d3d3", "stroke": "white" }
                 },
                 {
-                    // Graticule Layer
-                    "data": {
-                        "graticule": { "step": [30, 30] }
-                    },
-                    "mark": { "type": "geoshape", "stroke": "lightblue", "strokeWidth": 2 }
+                    "data": { "graticule": { "step": [30, 30] } },
+                    "mark": { "type": "geoshape", "stroke": "darkgrey", "strokeWidth": 1 }
                 },
                 {
-                    // Circle Markers for Natural Disasters
                     "data": {
                         "url": "https://raw.githubusercontent.com/BrandonLam2807/FIT3179_week_9_hw/refs/heads/main/australianaturaldisaster.csv"
                     },
@@ -55,7 +96,7 @@
                         "size": {
                             "field": "Deaths",
                             "type": "quantitative",
-                            "title": "Number Of Deaths",
+                            "title": "Number Of People Affected",
                             "scale": { "domain": [1, 5000] }
                         },
                         "color": {
